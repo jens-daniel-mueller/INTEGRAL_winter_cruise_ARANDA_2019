@@ -1,8 +1,8 @@
-#### load required packages ####
+# Packages ----------------------------------------------------------------
+
 library(tidyverse)
 library(lubridate)
 library(here)
-
 
 
 #### Read pCH4 data from HydroC IOW ####
@@ -57,7 +57,7 @@ Equi <-
 ggplot()+
   geom_path(data=HC.IOW, aes(date.time, pCH4, col="HydroC_IOW"))+
   geom_point(data=Equi, aes(date.time, CH4_CH4, col="Equi_IOW"))+
-  labs(x="Date", y="pCH4 (µatm)")+
+  labs(x="Date", y="pCH4 (?atm)")+
   scale_color_brewer(palette = "Set1", name="Instrument")+
   theme_bw() +
   ylim(2,12)
