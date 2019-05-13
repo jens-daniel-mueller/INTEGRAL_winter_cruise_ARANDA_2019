@@ -1,8 +1,6 @@
 # INTEGRAL_winter_cruise_ARANDA_2019
 Evaluation of marine biogeochemical and tracegas data from the Baltic Sea gatherer during the INTEGRAL winter cruise on RV Aranda.
 
-***
-
 # R script labelling
 
 1. read-in data from various sources and store as summarized files. Both, scripts and summarized data files are named according to Parameter_instrument_institution
@@ -14,7 +12,10 @@ Evaluation of marine biogeochemical and tracegas data from the Baltic Sea gather
 
 # Status by parameter
 
-*GPS track: OK
+* GPS track: OK
+* SST: reconstructed from science pump and ice well reading, consult read-me
+* SSS: reconstructed from science pump and ice well reading, consult read-me
+* pCO2:
 
 
 
