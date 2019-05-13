@@ -16,12 +16,12 @@ Evaluation of marine biogeochemical and tracegas data from the Baltic Sea gather
 * SST: reconstructed from science pump and ice well reading, consult read-me
 * SSS: reconstructed from science pump and ice well reading, consult read-me
 * pCO2:
-  +HydroC, IOW: no quality control, post-processing or similar done yet
-  +HydroC, FMI: no quality control, post-processing or similar done yet
-  +Equilibrator system, IOW: removed questionable readings, T-correction missing
+  + HydroC, IOW: no quality control, post-processing or similar done yet
+  + HydroC, FMI: no quality control, post-processing or similar done yet
+  + Equilibrator system, IOW: removed questionable readings, T-correction missing
 * pCH4:
-  +HydroC, IOW: no quality control, post-processing or similar done yet
-  +Equilibrator system, IOW: removed questionable readings, T-correction missing
+  + HydroC, IOW: no quality control, post-processing or similar done yet
+  + Equilibrator system, IOW: removed questionable readings, T-correction missing
 
 
 
