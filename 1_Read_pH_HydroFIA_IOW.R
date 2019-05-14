@@ -70,7 +70,7 @@ HF.SW <-
 
 HF.discrete %>% 
   ggplot()+
-  geom_point(aes(pH, dep, col=instrument))+
+  geom_point(aes(pHT, dep, col=instrument))+
   scale_color_brewer(palette = "Set1", name="Instrument")+
   scale_y_reverse()+
   facet_wrap(~station)+
@@ -81,15 +81,14 @@ HF.discrete <-
   group_by(station, dep) %>% 
   slice(tail(row_number(), 3)) %>%  
   ungroup() %>% 
-  filter(!(pH == 7.295 & station == "LL12")) %>% 
-  filter(!(station %in% c("OUL3","OUL4","JUNK","TRIS","BOX-")))
-
+  filter(!(pHError > 1 & station == "LL12")) %>% 
+  filter(!(station %in% c("OUL3","OUL4","BOX-")))
 
 
 # Write summarized data files ---------------------------------------------
 
-write_csv(HF.SW, here("Data/_summarized_data", "HydroFIA_pH_SW_INTEGRAL_winter.csv"))
-write_csv(HF.discrete, here("Data/_summarized_data", "HydroFIA_pH_discrete_INTEGRAL_winter.csv"))
+write_csv(HF.SW, here("Data/_summarized_data", "pH_HydroFIA_SW.csv"))
+write_csv(HF.discrete, here("Data/_summarized_data", "pH_HydroFIA_discrete.csv"))
 
 
 
