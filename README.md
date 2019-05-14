@@ -27,6 +27,9 @@ X. Plots/checks of additional external data sources (SMHI monitoring, VOS Tavast
 * pH: data post-processed according to Mueller and Rehder (2018)
   + pH reported at measurement temperature, correction to in-situ T (or any other fixed temperature) is missing
   + pH for flowthrough measurements (SW) calculated at S=5, correction to in-situ salinity missing
+* CT
+  + IOW shipboard and lab data post-processed by Stefan Otto
+  + calculated from pH HydroFIA and AT estimate
 
 
 
