@@ -5,12 +5,13 @@ library(lubridate)
 library(here)
 
 
-# Read HydroFIA pH data postprocessed according to Mueller and Reh --------
+# Read HydroFIA pH data ---------------------------------------------------
+# postprocessed according to Mueller and Rehder, 2018
 
-HF1 <- read_csv(here::here("Data/pH_HydroFIA_IOW/PH-0218-001", "2019-03-08-18-06-18-pH-recalculated.csv")) %>% 
+HF1 <- read_csv(here::here("Data/pH_HydroFIA_IOW/PH-0218-001", "2019-05-03-16-50-55-pH-recalculated.csv")) %>% 
   mutate(instrument = "1_PH-0218-001")
 
-HF3 <- read_csv(here::here("Data/pH_HydroFIA_IOW/PH-1017-001", "2019-03-08-18-11-08-pH-recalculated.csv")) %>% 
+HF3 <- read_csv(here::here("Data/pH_HydroFIA_IOW/PH-1017-001", "2019-05-03-14-11-28-pH-recalculated.csv")) %>% 
   mutate(instrument = "3_PH-1017-001")
 
 HF <- bind_rows(HF1, HF3)
@@ -20,18 +21,16 @@ rm(HF1, HF3)
 HF <-
   HF %>% 
   select(date_time = "timeStamp","sampleName",sal="salinity", tem_measure = "temperature", 
-         pHT_25="ph_mueller",pHError="ph_mueller_error", "instrument") %>% 
+         pHT="ph_mueller",pHError="ph_mueller_error", "instrument") %>% 
   filter(date_time > ymd_h("2019-02-28T12"))
-
 
 
 # Subset data from continous surface water measurements -------------------
 
 HF.SW <-
 HF %>% 
-  filter(sampleName == "SW")
-
-
+  filter(sampleName == "SW") %>% 
+  select(-2)
 
 # Subset data from discrete profile samples -------------------------------
 
@@ -39,10 +38,12 @@ HF.discrete <-
 HF %>%  
   mutate(station = str_sub(sampleName,1,4),
          dep = as.numeric(str_sub(sampleName,5,7))) %>% 
-  filter( !( station %in% c("SW","JUNK","CRMY","TRIS") ) )
+  filter( !( station %in% c("SW","JUNK","CRMY","TRIS") ) ) %>% 
+  select(-2)
   
 
 
+# Correction of pHT to exactly 25 degC ------------------------------------
 
 # HF <-
 #   HF %>% 
@@ -55,7 +56,7 @@ HF %>%
 HF.SW %>% 
   #filter(pH>7.55) %>% 
   ggplot()+
-  geom_path(aes(date.time, pH, col=instrument))+
+  geom_path(aes(date_time, pHT, col=instrument))+
   scale_x_datetime(date_labels = "%d.%b, %H:%M")+
   scale_color_brewer(palette = "Set1", name="Instrument")+
   labs(x="Date", y="pHT @ 25oC")+
@@ -64,7 +65,7 @@ HF.SW %>%
 
 HF.SW <-
   HF.SW %>% 
-  filter(pH<7.8)
+  filter(pHT<7.8)
 
 
 HF.discrete %>% 
@@ -85,6 +86,12 @@ HF.discrete <-
 
 
 
-write_csv(HF, here("Data/_summarized_data", "HydroFIA_pH_all_INTEGRAL_winter.csv"))
+# Write summarized data files ---------------------------------------------
+
 write_csv(HF.SW, here("Data/_summarized_data", "HydroFIA_pH_SW_INTEGRAL_winter.csv"))
 write_csv(HF.discrete, here("Data/_summarized_data", "HydroFIA_pH_discrete_INTEGRAL_winter.csv"))
+
+
+
+
+
