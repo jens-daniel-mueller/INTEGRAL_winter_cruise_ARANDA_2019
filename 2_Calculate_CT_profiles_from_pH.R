@@ -1,23 +1,27 @@
-#### load required packages ####
+
+# Packages ----------------------------------------------------------------
+
 library(tidyverse)
 library(lubridate)
 library(here)
 library(seacarb)
 
-#### Read HydroFIA pH profile data ####
 
-HF.discrete <- read_csv(here("Data/_summarized_data", "HydroFIA_pH_discrete_INTEGRAL_winter.csv"))
+# Read HydroFIA pH profile data -------------------------------------------
+
+HF.discrete <- read_csv(here::here("Data/_summarized_data", "pH_HydroFIA_discrete.csv"))
 
 
-#### CT calculation from measured pH and AT ####
+
+# CT calculation from measured pH and AT ----------------------------------
 # AT calculated from Salinity according to Mueller et al. 2016
 
 CT <-
   HF.discrete %>% 
-  select(date.time,instrument,station,dep,sal=salinity,pH) %>% 
+  select(date_time,instrument,station,dep,sal,pHT) %>% 
   mutate(
     AT = 1610 +220.9*(sal-7) +5.1*(2019-1995) -0.6*(sal-7)*(2019-1995),
-    CT = carb(flag=8, var1=pH, var2=AT*1e-6, S=sal, T=25, k1k2="m10")$DIC*1e6)
+    CT = carb(flag=8, var1=pHT, var2=AT*1e-6, S=sal, T=25, k1k2="m10")$DIC*1e6)
 
 
 
@@ -42,7 +46,10 @@ CT %>%
   labs(x="Salinity", y="Depth (m)")+
   theme_bw()
 
-# ggsave(here("Plots/pH", "HydroFIA_pH_profiles_INTEGRAL_winter.jpg"),
-#        width = 8, height = 8)
-# 
-write_csv(CT, here("Data/_summarized_data", "CT_profiles_calculated_from_pH_all_INTEGRAL_winter.csv"))
+
+
+# Write summarized file ---------------------------------------------------
+
+write_csv(CT, here("Data/_summarized_data", "CT_profiles_calculated_from_pH.csv"))
+
+
