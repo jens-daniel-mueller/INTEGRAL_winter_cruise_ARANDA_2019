@@ -14,7 +14,6 @@ df <- read_csv(here::here("Data/CT_AIRICA_IOW", "20190228_Aranda19_results_CT_AT
 
 # Minor column manipulation -----------------------------------------------
 
-
 df <- df %>% 
   mutate(date = str_sub(Date_Station_Depth,1,10),
          station = str_sub(Date_Station_Depth,12,15),
