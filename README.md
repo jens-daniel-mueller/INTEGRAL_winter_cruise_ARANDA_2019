@@ -3,7 +3,7 @@ Evaluation of marine biogeochemical and tracegas data from the Baltic Sea gather
 
 # R script labelling
 
-1. read-in data from various sources and store as summarized files. Both, scripts and summarized data files are named according to Parameter_instrument_institution
+1. read-in data from various sources and store as summarized files. Some preliminary quality checks and plots for correct read-in are generated. Obvious outliers and errornous data are removed.
 
 2. perform calculations on summarized data and merge different data sets
 
@@ -18,10 +18,13 @@ Evaluation of marine biogeochemical and tracegas data from the Baltic Sea gather
 * pCO2:
   + HydroC, IOW: no quality control, post-processing or similar done yet
   + HydroC, FMI: no quality control, post-processing or similar done yet
-  + Equilibrator system, IOW: removed questionable readings, T-correction missing
+  + Equilibrator system, IOW: AK removed questionable readings and introduced flags, consult read-me. T-correction missing
 * pCH4:
   + HydroC, IOW: no quality control, post-processing or similar done yet
-  + Equilibrator system, IOW: removed questionable readings, T-correction missing
+  + Equilibrator system, IOW: AK removed questionable readings and introduced flags, consult read-me. T-correction missing
+* pH: data post-processed according to Mueller and Rehder (2018)
+  + pH reported at measurement temperature, correction to in-situ T (or any other fixed temperature) is missing
+  + pH for flowthrough measurements (SW) calculated at S=5, correction to in-situ salinity missing
 
 
 
