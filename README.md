@@ -9,6 +9,8 @@ Evaluation of marine biogeochemical and tracegas data from the Baltic Sea gather
 
 3. plot (merged) data
 
+X. Plots/checks of additional external data sources (SMHI monitoring, VOS Tavastaland, etc)
+
 
 # Status by parameter
 
