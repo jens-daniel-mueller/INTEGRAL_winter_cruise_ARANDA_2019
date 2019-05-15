@@ -3,9 +3,17 @@ Evaluation of marine biogeochemical and tracegas data from the Baltic Sea gather
 
 # R script labelling
 
-1. read-in data from various sources and store as summarized files. Some preliminary quality checks and plots for correct read-in are generated. Obvious outliers and errornous data are removed.
+The name of the scripts in this repo start with a number, indicating the sequence of code execution
 
-2. perform calculations on summarized data and merge different data sets
+1. 
+* read data from various sources
+* store as summarized files
+* perform preliminary quality checks and produce plots to test correct read-in
+* remove obvious outliers and errornous data
+
+2. 
+* perform calculations on summarized data
+* merge surface and profiling data sets, focusing on relevant core parameters
 
 3. plot (merged) data
 
@@ -29,8 +37,12 @@ X. Plots/checks of additional external data sources (SMHI monitoring, VOS Tavast
   + pH for flowthrough measurements (SW) calculated at S=5, correction to in-situ salinity missing
 * CT
   + IOW shipboard and lab data post-processed by Stefan Otto
-  + calculated from pH HydroFIA and AT estimate
-
+  + calculated from pH HydroFIA and AT, with AT estimated from AT-S relationsship (Mueller et al., 2016)
+* Nutrients
+  + quality controlled by SYKE (except O2) and included
+* Particulate and dissolved organic compounds
+  + N/C (IOPAN): Provided but not yet included
+  + P (IOW): Not yet analysed
 
 
 # Additional information
