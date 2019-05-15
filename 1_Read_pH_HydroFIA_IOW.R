@@ -87,8 +87,16 @@ HF.discrete <-
 
 # Write summarized data files ---------------------------------------------
 
-write_csv(HF.SW, here("Data/_summarized_data", "pH_HydroFIA_SW.csv"))
-write_csv(HF.discrete, here("Data/_summarized_data", "pH_HydroFIA_discrete.csv"))
+HF.SW %>% 
+  filter(instrument == "1_PH-0218-001") %>% 
+  write_csv(here::here("Data/_summarized_data", "pH_HydroFIA_SW_0218.csv"))
+
+HF.SW %>% 
+  filter(instrument == "3_PH-1017-001") %>% 
+  write_csv(here::here("Data/_summarized_data", "pH_HydroFIA_SW_1017.csv"))
+
+write_csv(HF.SW, here::here("Data/_summarized_data", "pH_HydroFIA_SW_both.csv"))
+write_csv(HF.discrete, here::here("Data/_summarized_data", "pH_HydroFIA_discrete.csv"))
 
 
 
