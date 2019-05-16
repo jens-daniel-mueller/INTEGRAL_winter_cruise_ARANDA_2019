@@ -7,9 +7,9 @@ library(here)
 
 #### Read CT Airica ####
 
-C3 <- read_csv(here("Data/SMHI", "SMHI_C3_2000-2012_JM.csv")) %>% 
+C3 <- read_csv(here("Data/2012_nutrients_monitoring_SMHI", "SMHI_C3_2000-2012_JM.csv")) %>% 
   mutate(station="C3 (Bothnian Sea, south)")
-F3 <- read_csv(here("Data/SMHI", "SMHI_F3_A5_1968-2012_JM.csv")) %>% 
+F3 <- read_csv(here("Data/2012_nutrients_monitoring_SMHI", "SMHI_F3_A5_1968-2012_JM.csv")) %>% 
   mutate(station="F3 (Bothnian Bay, north)")
 
 df <- bind_rows(C3, F3)
